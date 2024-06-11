@@ -1,0 +1,179 @@
+﻿@model KhoaHocNauAn.Models.View_Detail_CookingCourse
+@using KhoaHocNauAn.Utilities;
+
+<body>
+	<main>
+		<section class="pt-3 pt-xl-5">
+			<div class="container" data-sticky-container="">
+
+				<div class="row g-4">
+					<!-- Main content START -->
+					<div class="col-xl-8">
+						<div class="row g-4">
+
+							<!-- Title START -->
+							<div class="col-12">
+								<div class="d-flex">
+									<a href="Trang-chu">Trang chủ</a>
+									<p>&nbsp;&nbsp>&nbsp&nbsp</p>
+									<a href="Khoa-hoc-lam-bep">Khoá học làm bếp</a>
+									<p>&nbsp;&nbsp>&nbsp&nbsp</p>
+									<a >@Html.DisplayFor(model => model.CourseName)</a>
+								</div>
+								<!-- Title -->
+								<h2 class="m-0">@Html.DisplayFor(model => model.CourseName)</h2>
+							</div>
+							<!-- Title END -->
+							<div class="col-12 position-relative">
+								<div >
+									<img style="width:100%;height:25%;"  src="@Html.DisplayFor(model => model.Images)" alt="">
+								</div>
+							</div>
+
+							<!-- About course START -->
+							<div class="mb-5 col-12">
+								<div class="card border">
+									<!-- Card header START -->
+									<div class="card-header border-bottom">
+										<h3 class="mb-0">Chi tiết về khoá học</h3>
+									</div>
+									<!-- Card header END -->
+									<!-- Card body START -->
+									<div class="card-body">
+										<p>@Html.Raw(Model.Description)</p>
+
+										<!-- List content -->
+										<h5 class="mt-4">Bạn sẽ học được những gì?</h5>
+										<div class="row mb-3">
+											<div class="col-md-6">
+												<ul class="list-group list-group-borderless">
+													<li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Kỹ năng nấu ăn chuyên nghiệp</li>
+													<li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Kiến thức về ẩm thực</li>
+													<li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Sáng tạo trong nấu ăn</li>
+													<li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Kỹ năng quản lý thời gian và áp lực</li>
+													<li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Tinh thần đồng đội và làm việc nhóm</li>
+												</ul>
+											</div>
+										</div>
+										<p class="mb-0">Tất cả những điểm này đều có thể mang lại cho bạn những kỹ năng và kiến thức quý báu không chỉ trong lĩnh vực nấu ăn mà còn trong cuộc sống hàng ngày.</p>
+									</div>
+									<!-- Card body START -->
+								</div>
+							</div>
+							<!-- About course END -->
+						
+							
+						</div>
+					</div>
+					<!-- Main content END -->
+					<!-- Right sidebar START -->
+					<div class="col-xl-4">
+						<div data-sticky="" data-margin-top="80" data-sticky-for="768">
+							<div class="row g-4">
+								<div class="col-md-6 col-xl-12">
+									<!-- Course info START -->
+									<div class="card card-body border p-4">
+										<!-- Price and share button -->
+										<div class="d-flex justify-content-between align-items-center">
+											<!-- Price -->
+											<h3 class="fw-bold mb-0 me-2">@Html.DisplayFor(model => model.Price) đ</h3>
+											<!-- Share button with dropdown -->
+											<div class="dropdown">
+												<a href="#" class="btn btn-sm btn-light rounded mb-0 small" role="button" id="dropdownShare" data-bs-toggle="dropdown" aria-expanded="false">
+													<i class="fas fa-fw fa-share-alt"></i>
+												</a>
+												<!-- dropdown button -->
+												<ul class="dropdown-menu dropdown-w-sm dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare">
+													<li><a class="dropdown-item" href="#"><i class="fab fa-twitter-square me-2"></i>Twitter</a></li>
+													<li><a class="dropdown-item" href="#"><i class="fab fa-facebook-square me-2"></i>Facebook</a></li>
+													<li><a class="dropdown-item" href="#"><i class="fab fa-linkedin me-2"></i>LinkedIn</a></li>
+													<li><a class="dropdown-item" href="#"><i class="fas fa-copy me-2"></i>Copy link</a></li>
+												</ul>
+											</div>
+										</div>
+
+										<!-- Buttons -->
+										<form asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.CourseID">
+										<div class="mt-3 d-grid">									
+												<button type="submit" class="btn btn-primary" data-bs-toggle="modal">
+													Đăng ký
+												</button>																	
+										</div>
+										</form>
+										
+										<!-- Divider -->
+										<hr>
+
+										<!-- Title -->
+										<h5 class="mb-3">Thông tin khoá học</h5>
+										<ul class="px-0">
+											<li class=" px-0 d-flex justify-content-between">
+												<span class="h6 fw-light mb-0"><i class="fas fa-fw fa-book-open text-primary"></i>&nbsp;Phương thức học</span>
+												<span>Trực tiếp</span>
+											</li>
+											<li class="mt-2 px-0 d-flex justify-content-between">
+												<span class="h6 fw-light mb-0"><i class="fas fa-fw fa-clock text-primary"></i>&nbsp;Thời gian học</span>
+												<span>@Html.DisplayFor(model => model.LearnTime)</span>
+											</li>
+											<li class="mt-2 px-0 d-flex justify-content-between">
+												<span class="h6 fw-light mb-0"><i class="fas fa-fw fa-signal text-primary"></i>&nbsp;Trình độ</span>
+												<span>@Html.DisplayFor(model => model.Levels)</span>
+											</li>
+											<li class="mt-2 px-0 d-flex justify-content-between">
+												<span class="h6 fw-light mb-0"><i class="fas fa-fw fa-user-clock text-primary"></i>&nbsp;Học viên</span>
+												<span>@Html.DisplayFor(model => model.StudentCount)</span>
+											</li>
+											<li class="mt-2 px-0 d-flex justify-content-between">
+												<span class="h6 fw-light mb-0"><i class="fas fa-fw fa-medal text-primary"></i>&nbsp;Giấy chứng nhận</span>
+												<span>Có</span>
+											</li>
+										</ul>
+										<!-- Divider -->
+										<hr class="mt-0">
+
+										<!-- Instructor info -->
+										<div class="d-sm-flex align-items-center">
+											<!-- Avatar image -->
+											<div class="avatar avatar-xl">
+												<img style="width:70px; height:70px;" class="avatar-img rounded-circle" src="@Html.DisplayFor(model => model.TeachImages)" alt="avatar">
+											</div>
+											<div class="ms-sm-3 mt-2 mt-sm-0">
+												<h5 class="mb-0">Giảng viên @Html.DisplayFor(model => model.TeacherName)</h5>
+											</div>
+										</div>
+
+										<!-- Rating and follow -->
+										<div class="d-sm-flex justify-content-sm-between align-items-center mt-0 mt-sm-2">
+											<!-- Rating star -->
+											<ul class="list-inline mb-0">
+												<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+												<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+												<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+												<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+												<li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
+												<li class="list-inline-item ms-2 h6 fw-light mb-0">4.5/5.0</li>
+											</ul>
+
+											<!-- button -->
+											<button class="btn btn-sm btn-primary mb-0 mt-2 mt-sm-0">Theo dõi</button>
+										</div>
+									</div>
+									<p class="mt-3">Hạn đăng ký hết vào ngày: <span style="color:red;">@Html.DisplayFor(model => model.Deadline)</span></p>
+									<!-- Course info END -->
+								</div>
+							</div><!-- Row End -->
+						</div>
+					</div>
+					<!-- Right sidebar END -->
+
+				</div><!-- Row END -->
+			</div>
+		</section>
+		<!-- =======================
+		Page content END -->
+		
+	</main>
+	
+
+</body>
+</html>

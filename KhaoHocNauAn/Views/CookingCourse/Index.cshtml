@@ -1,0 +1,160 @@
+﻿@model KhoaHocNauAn.Models.CategoryCourse;
+@using KhoaHocNauAn.Utilities;
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="position-fixed col-lg-2 mt-4 p-4 card">
+                <h4 class="mb-2">Danh Mục</h4>
+                @foreach (var item in Model.Categories)
+                {
+                    <div class=" form-check mb-2">
+                        <input class="form-check-input" type="checkbox" name="categories" value="@item.CategoryID" id="item-@item.CategoryID">
+                        <label class="form-check-label ms-1" for="item-@item.CategoryID">
+                            @item.CategoryName 
+                        </label>
+                    </div>
+                }
+            </div>
+            <div style="margin-left:16%; margin-top:20px;" class=" col-lg-10 ">
+                    <div class="container">
+                        <div class="d-flex">
+                            <a href="Trang-chu">Trang chủ</a>
+                            <p>&nbsp;&nbsp>&nbsp&nbsp</p>
+                            <a>Khoá học làm bếp</a>
+                        </div>
+                        <div id="course-list" class="course-list row g-4 justify-content-center ">           
+                            @foreach (var item in Model.DetailCourses)
+                        {
+                            string url = Functions.TitleSlugGeneration("Detail-Courses", item.CourseName, item.CourseID);
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="course-item bg-light">
+                                <div class="position-relative overflow-hidden">
+                                    <img class="img-fluid" src="@item.Images" alt="">
+                                </div>
+                                    <h5 class="mb-3 mt-3 text-center ms-auto"><a style="color:black;" href="/@url">@item.CourseName</a></h5>
+                               
+
+                                <div class="text-center pb-0">
+                                    <h4 class="mb-0 ">@item.Price đ</h4>
+                                    <div class="mb-3 ms-auto">
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small class="fa fa-star text-primary"></small>
+                                        <small>(123)</small>
+                                    </div>
+
+                                </div>
+
+                                <div class="d-flex border-top">
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>@item.TeacherName</small>
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>@item.LearnTime</small>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $('input[type="checkbox"][name="categories"]').on('change', function () {
+            var selectedCategories = $('input[type="checkbox"][name=categories]:checked').map(function () {
+                return $(this).val();
+        }).get();
+            if (selectedCategories.length === 0) {
+            $.ajax({
+                url: '@Url.Action("GetAllCourses", "CookingCourse")',
+                type: 'GET',
+                dataType: 'html',
+                success: function (result) {
+                    $('#course-list').html(result);
+                },
+                error: function () {
+                    console.log('Lỗi');
+                }
+            });
+            } else {
+                $.ajax({
+                    url: '@Url.Action("GetFilteredCourses", "CookingCourse")',
+                    type: 'POST',
+                    dataType: 'html',
+                    data: {
+                        CategoryIDS: selectedCategories
+                    },
+                    success: function (result) {
+                        $('#course-list').html(result);
+                    },
+                    error: function () {
+                        console.log('Lỗi không thể lọc sản phẩm');
+                    }
+                });
+            }
+     });
+    </script>
+
+<style>
+
+
+       .height{
+        height: 100vh;
+       }
+       
+
+       .search{
+       position: relative;
+       box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+         
+       }
+
+       .search input{
+
+        height: 40px;
+        text-indent: 25px;
+        border: 2px solid #d6d4d4;
+
+
+       }
+
+
+       .search input:focus{
+
+        box-shadow: none;
+                border: 2px solid #568203;
+
+
+       }
+
+       .search .fa-search{
+
+        position: absolute;
+        top: 11px;
+        left: 16px;
+
+       }
+
+       .search button{
+
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        padding:2px;
+        width: 110px;
+           background: #568203;
+
+       }
+</style>
+
+   
+
+
+
+ 

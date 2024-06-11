@@ -1,0 +1,42 @@
+﻿<html>
+
+<style>
+    body {
+        text-align: center;
+
+        background: #EBF0F5;
+    }
+
+
+    #icon {
+        color: #9ABC66;
+        font-size: 100px;
+        line-height: 150px;
+        margin-left: -15px;
+    }
+
+    .card {
+        background: white;
+        padding: 50px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+        margin-bottom:50px;
+        margin-top:50px;
+    }
+</style>
+<body>
+    <div class="card">
+        <div style="border-radius:150px; height:150px; width:150px; background: #F8FAF5; margin:0 auto;">
+            <i id="icon" class="checkmark">✓</i>
+        </div>
+        <h2>Thành công</h2>
+        <p>Đăng ký khoá học thành công<br />Chúng tôi sẽ liên hệ bạn trong ít phút !</p>
+        <form asp-action="Index" asp-controller="Home">
+            <button type="submit" class="btn btn-primary">Quay lại trang chủ</button>
+        </form>
+        
+    </div>
+</body>
+</html>

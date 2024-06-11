@@ -1,0 +1,87 @@
+﻿ @model KhoaHocNauAn.Models.CookingCourse;
+ @using KhoaHocNauAn.Utilities
+
+    <div style="overflow:scroll;witdh:500px;" class="modal fade" id="editCourse-@Model.CourseID" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sửa khoá học</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" asp-action="Edit">
+                <div class="modal-body">
+                    <div style="display:none" class="mb-3">
+                        <label asp-for="CourseID" class="col-form-label"></label>
+                        <input asp-for="CourseID" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="CourseName" class="col-form-label">Tên khoá học</label>
+                        <input asp-for="CourseName" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="col-form-label">Mô tả</label>
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="control-label">Ảnh khoá học</label>
+                        <select asp-for="Images" class="form-select" >
+                            <option value="/files/anhnauan2.jpg">Ảnh 1</option>
+                            <option value="/files/anhnauan3.jpg">Ảnh 2</option>
+                        </select>
+                    </div>
+                    <div class="el"></div>
+                    <div class="mb-3">
+                        <label asp-for="Price" class="col-form-label">Giá</label>
+                        <input asp-for="Price" type="text" class="form-control">
+                    </div>
+                    <div style="display:none;" class="mb-3">
+                        <label asp-for="IsActive" class="col-form-label"></label>
+                        <input value="True" asp-for="IsActive" type="text" class="form-control">
+                    </div>
+                    <div style="display:none;" class="mb-3">
+                        <label asp-for="Status" class="col-form-label"></label>
+                        <input value="1" asp-for="Status" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="StudentCount" class="col-form-label">Số học viên</label>
+                        <input asp-for="StudentCount" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="LearnTime" class="col-form-label">Thời gian học</label>
+                        <input asp-for="LearnTime" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Levels" class="col-form-label">Cấp độ</label>
+                        <select asp-for="Levels" class="form-select" id="Levels">
+                            <option value="Cơ bản">Cơ bản</option>
+                            <option value="Nâng cao">Nâng cao</option>
+                        </select>
+                    </div>
+                    <div style="display:none;" class="mb-3">
+                        <label asp-for="MenuID" class="col-form-label"></label>
+                        <input value="1" asp-for="MenuID" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="CategoryID" class="col-form-label">ID Danh mục</label>
+                        <input asp-for="CategoryID" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="TeacherID" class="col-form-label">ID Giáo viên</label>
+                        <input asp-for="TeacherID" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Deadline" class="col-form-label">Hạn khoá học</label>
+                        <input asp-for="Deadline" class="form-control"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                </div>
+          
+            </form>
+            </div>
+       
+        </div>
+    </div>
+   

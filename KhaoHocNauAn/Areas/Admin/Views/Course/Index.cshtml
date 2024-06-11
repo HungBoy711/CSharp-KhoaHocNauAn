@@ -1,0 +1,79 @@
+﻿@using KhoaHocNauAn.Models;
+@model IList<CookingCourse>
+
+<main  id="main" class="main">
+	<div class="pagetitle">
+		<h2>Danh sách khoá học</h2>
+	</div>
+	<p>
+		<a type="button" class="btn btn-success" asp-area="Admin" asp-controller="Course" asp-action="Create">
+			<i class="bi bi-file-earmark-text me-1"></i>Thêm khoá học
+		</a>
+	</p>
+	<form style="width:300px;" class="bg-body shadow rounded p-2" asp-controller="Course" asp-action="Index">
+		<div class="input-group input-borderless">
+			<input name="SearchString" class="form-control me-1" type="search" placeholder="Tìm kiếm khoá học">
+			<button type="submit" class="btn btn-primary mb-0 rounded"><i class="fas fa-search"></i></button>
+		</div>
+	</form>
+	<section class="section dashboard">
+		<div class="row">
+			<div class="col-12">
+				<div class="card recent-sales overflow-auto">
+					<div class="card-body mt-4">
+						<table class="table table-borderless datatable">
+							<thead>
+								<tr>
+									<th class="col-1 text-center">#</th>
+									<th class="col-2 text-center">Ảnh</th>
+									<td class="col-2 text-center">Tên khoá học</td>
+									<td class="col-2 text-center">Số học viên</td>
+									<td class="col-1 text-center">Giá</td>
+									<th class="col-2 text-center">Ẩn/Hiện</th>
+								</tr>
+							</thead>
+							<tbody>
+								@{
+									int i = 1;
+								}
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td class="text-center">@(i++)</td>
+										<td class="text-center">
+											<img style="width100px;height:60px;" src="@item.Images" />
+										</td>
+										<td class="text-center">@item.CourseName</td>
+										<td class="text-center">@item.StudentCount </td>
+										<td class="text-center">@item.Price</td>
+										<td class="text-center">@item.IsActive</td>
+										<td class="text-center d-flex">
+											@* <a style="margin-right:10px;" asp-area="Admin" asp-controller="Menu" asp-action="Edit"
+											   asp-route-id="@item.MenuID" class=" btn btn-primary btn-sm"
+											   ><i class="bi bi-pencil"></i></a> *@
+											<button
+												class=" btn btn-primary btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="@("#editCourse-"+item.CourseID)" data-bs-url="@Url.Action($"Edit/{item.CourseID}")">
+												<i class="bi bi-pencil"></i>
+											</button>
+											@await Html.PartialAsync("_CourseEditPartialView",item)
+												
+											<button style="margin-left:10px;" class=" btn btn-danger btn-sm" type="button" data-bs-toggle="modal" data-bs-target="@("#deleteCourse-"+item.CourseID)" data-bs-url="@Url.Action($"Delete/{item.CourseID}")">
+												<i class="bi bi-trash"></i>
+											</button>
+											<div style="color:white">
+												@await Html.PartialAsync("_CourseDeletePartialView", item)
+											</div>
+											
+										</td>
+									</tr>				
+								}
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</main>

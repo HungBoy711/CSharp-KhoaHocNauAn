@@ -1,0 +1,63 @@
+﻿@using KhoaHocNauAn.Models;
+@model IList<Teacher>
+
+
+<main id="main" class="main">
+	<div class="pagetitle">
+		<h2>Danh sách giáo viên</h2>
+	</div>
+	<p>
+		<a type="button" class="btn btn-success" asp-area="Admin" asp-controller="Teacher" asp-action="Create">
+			<i class="bi bi-file-earmark-text me-1"></i>Thêm giáo viên
+		</a>
+	</p>
+	<section class="section dashboard">
+		<div class="row">
+			<div class="col-12">
+				<div class="card recent-sales overflow-auto">
+					<div class="card-body mt-4">
+						<table class="table table-borderless datatable">
+							<thead>
+								<tr>
+									<th class="col-1 text-center">#</th>
+									<th class="col-2 text-center">Ảnh</th>
+									<td class="col-2 text-center">Tên giáo viên</td>
+									<td class="col-1 text-center">Giới tính</td>
+									<td class="col-1 text-center">Bằng cấp</td>
+									<td class="col-2 text-center">Số điện thoại</td>
+									<th class="col-2 text-center">Ẩn/Hiện</th>
+								</tr>
+							</thead>
+							<tbody>
+								@{
+									int i = 1;
+								}
+								@foreach (var item in Model)
+								{
+									<tr id="tr_@item.TeacherID">
+										<td class="text-center">@(i++)</td>
+										<td class="text-center">
+											<img style="width100px;height:60px;" src="@item.TeachImages" />
+										</td>
+										<td class="text-center">@item.TeacherName</td>
+										<td class="text-center">@item.Gender</td>
+										<td class="text-center">@item.Degree</td>
+										<td class="text-center">@item.Phone</td>
+										<td class="text-center">@item.IsActive</td>
+										<td class="text-center d-flex">
+											<a style="margin-right:10px;" asp-area="Admin" asp-controller="Teacher" asp-action="Edit"
+											   asp-route-id="@item.TeacherID" class=" btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>
+											<a asp-area="Admin" asp-controller="Teacher" asp-action="Delete"
+											   asp-route-id="@item.TeacherID" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+										</td>
+									</tr>
+								}
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>

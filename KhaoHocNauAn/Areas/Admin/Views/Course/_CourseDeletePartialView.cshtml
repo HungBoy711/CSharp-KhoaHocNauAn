@@ -1,0 +1,35 @@
+﻿ @model KhoaHocNauAn.Models.CookingCourse;
+
+
+<div  class="modal fade" id="deleteCourse-@Model.CourseID" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 style="color:black" class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xoá khoá học này ?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" asp-action="Delete">
+                <div class="modal-body">
+                    <div style="margin-top:-20px;" class="mb-3">
+                        <label asp-for="CourseName" class="col-form-label">Tên khoá học</label>
+                        <input asp-for="CourseName" type="text" class="form-control">
+                    </div>
+                    <div style="display:none" class="mb-3">
+                        <label asp-for="CourseID" class="col-form-label"></label>
+                        <input asp-for="CourseID" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-danger">Xác nhận</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+}

@@ -1,0 +1,23 @@
+﻿@using KhoaHocNauAn.Areas.Admin.Models
+@model IList<AdminMenu>
+
+<aside background-color:white" id="sidebar" class="sidebar">
+    <ul style="list-style-type: none;">
+    <li class="nav-item mb-2">
+        <a class="nav-link " href="/Admin/Home">
+               <i style="margin-right:5px;" class="fa-solid fa-house"></i>
+            <span>Bảng điều khiển</span>
+        </a>
+    </li>
+    @foreach (var item in Model)
+    {
+            <li class="nav-item mb-2">
+                <a  class="nav-link " href="/Admin/@item.ControllerName/@item.ActionName">
+                    <i style="margin-right:10px;" class="@item.Icon"></i>
+                    <span >@item.Name</span>
+                </a>
+            </li>
+    }
+    </ul>
+
+</aside>

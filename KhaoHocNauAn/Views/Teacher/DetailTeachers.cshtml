@@ -1,0 +1,101 @@
+﻿@model KhoaHocNauAn.Models.Teacher;
+@using KhoaHocNauAn.Utilities;
+
+
+<section class="pt-5 pb-0 mb-5 ">
+	<div class="container">
+		<div class="row g-0 g-lg-5">
+
+			<!-- Left sidebar START -->
+			<div class="col-lg-4">
+				<div class="row">
+					<div class="col-md-6 col-lg-12">
+						<!-- Instructor image START -->
+						<div class="card shadow p-2 mb-4 text-center">
+							<div class="rounded-3">
+								<!-- Image -->
+								<img style="witdh:322px;height:274px;" src="@Html.DisplayFor(model => model.TeachImages)" class="card-img" alt="course image">
+							</div>
+
+							<!-- Card body -->
+							<div class="card-body px-3">
+								<!-- Rating -->
+								<ul class="list-inline">
+									<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+									<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+									<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+									<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
+									<li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
+									<li class="list-inline-item ms-2 h6 fw-light mb-0">4.5/5.0</li>
+								</ul>
+								<!-- Social media button -->
+								<ul class="list-inline mb-0">
+									<li class="list-inline-item"> <a class="btn px-2 btn-sm bg-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> </li>
+									<li class="list-inline-item"> <a class="btn px-2 btn-sm bg-instagram-gradient" href="#"><i class="fab fa-fw fa-instagram"></i></a> </li>
+									<li class="list-inline-item"> <a class="btn px-2 btn-sm bg-twitter" href="#"><i class="fab fa-fw fa-twitter"></i></a> </li>
+									<li class="list-inline-item"> <a class="btn px-2 btn-sm bg-linkedin" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> </li>
+								</ul>
+							</div>
+						</div>
+						<!-- Instructor image END -->
+					</div>
+
+					<div class="col-md-6 col-lg-12">
+						<div class="card card-body shadow p-4 mb-4">
+
+							<!-- Education START -->
+							<!-- Title -->
+							<h4 class="mb-3">Bằng cấp</h4>
+
+							<!-- Education item -->
+							<div class="d-flex align-items-center mb-4">
+								<span class="icon-md text-dark mb-0 bg-light rounded-3"><i class="fas fa-graduation-cap"></i></span>
+								<div class="ms-3">
+									<h6 class="mb-0">@Html.DisplayFor(model => model.Degree)</h6>
+									
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div> <!-- Row End -->
+			</div>
+			<!-- Left sidebar END -->
+			<!-- Main content START -->
+			<div class="col-lg-8">
+
+				<!-- Title -->
+				<h1 class="mb-0">@Html.DisplayFor(model => model.TeacherName)</h1>
+				<p>@Html.DisplayFor(model => model.Position)</p>
+				<!-- Content -->
+				<p class="mt-4">@Html.DisplayFor(model => model.Description)</p>
+				<!-- Personal info -->
+				<ul class="list-group list-group-borderless">
+					<li class="list-group-item px-0">
+						<span style="margin-left:10px;" class="h6 fw-light"><i class="fa-solid fa-venus-mars text-primary me-1 me-sm-3"></i>Giới tính:</span>
+						<span>@Html.DisplayFor(model => model.Gender)</span>
+					</li>
+					<li  class=" list-group-item px-0">
+						<span style="margin-left:10px;" class="h6 fw-light"><i class=" fas fa-fw fa-map-marker-alt text-primary me-1 me-sm-3"></i>Địa chỉ làm việc:</span>
+						<span>Số 73, Đình Công Tráng,Phường Lê Mao, TP Vinh, Nghệ An</span>
+					</li>
+					<li class="list-group-item px-0">
+						<span style="margin-left:10px;" class="h6 fw-light"><i class="fas fa-fw fa-envelope text-primary me-1 me-sm-3"></i>Email:</span>
+						<span>@Html.DisplayFor(model => model.Email)</span>
+					</li>
+					<li class="list-group-item px-0">
+						<span style="margin-left:10px;" class="h6 fw-light"><i class="fas fa-fw fa-headphones text-primary me-1 me-sm-3"></i>Số điện thoại:</span>
+						<span>@Html.DisplayFor(model => model.Phone)</span>
+					</li>
+					<li class="list-group-item px-0">
+						<span style="margin-left:10px;" class="h6 fw-light"><i class="fas fa-fw fa-globe text-primary me-1 me-sm-3"></i>Website:</span>
+						<span>https://ChefVinh.comm</span>
+					</li>
+				</ul>
+
+
+			</div>
+		</div>
+	</div>
+</section>
+

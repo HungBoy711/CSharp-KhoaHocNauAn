@@ -1,0 +1,72 @@
+﻿
+@model IList<Teacher>;
+@using KhoaHocNauAn.Utilities;
+
+		<section class="pt-4 mb-5">
+			<div class="container">
+				<div class="row mb-4 align-items-center">
+					<div class="col-sm-6 col-xl-4">
+						<form class="bg-body shadow rounded p-2">
+							<div class="input-group input-borderless">
+								<input class="form-control me-1" type="search" placeholder="Tìm kiếm giảng viên">
+								<button type="button" class="btn btn-primary mb-0 rounded"><i class="fas fa-search"></i></button>
+							</div>
+						</form>
+					</div>
+				</div>
+			
+			<div class="row g-4 justify-content-center">
+				@foreach (var item in Model)
+				{
+				string url = Functions.TitleSlugGeneration("Detail-Teachers", item.TeacherName, item.TeacherID);
+				<div class="col-lg-10 col-xl-6">
+					<div style="height:150px;" class="card shadow p-2">
+						<div class="row g-0">
+							<!-- Image -->
+							<div class="col-md-4">
+								<img style="width:150px;height:100px;" src="@item.TeachImages" class="rounded-3" alt="...">
+							</div>
+
+							<!-- Card body -->
+							<div  class="col-md-8 ">
+								<div class="card-body">
+									<!-- Title -->
+									<div class="d-sm-flex justify-content-sm-between mb-2 mb-sm-3">
+										<div>
+											<h5 class="card-title mb-0"><a href="/@url">@item.TeacherName</a></h5>
+										</div>
+										<span class="h6 fw-light">5.0<i class="fas fa-star text-warning ms-1"></i></span>
+									</div>
+									<!-- Content -->
+									<p class="col-10 text-truncate">@item.Description</p>
+									<!-- Info -->
+									<div class="d-sm-flex justify-content-sm-between align-items-center">
+										<!-- Title -->
+										<h6 class="text-orange mb-0">@item.Position</h6>
+
+										<!-- Social button -->
+										<ul class="list-inline mb-0 mt-3 mt-sm-0">
+											<li class="list-inline-item">
+												<a class="mb-0 me-1 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a>
+											</li>
+											<li class="list-inline-item">
+												<a class="mb-0 me-1 text-instagram-gradient" href="#"><i class="fab fa-fw fa-instagram"></i></a>
+											</li>
+											<li class="list-inline-item">
+												<a class="mb-0 me-1 text-twitter" href="#"><i class="fab fa-fw fa-twitter"></i></a>
+											</li>
+											<li class="list-inline-item">
+												<a class="mb-0 text-linkedin" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				}
+			</div>
+			</div>
+		</section>
+

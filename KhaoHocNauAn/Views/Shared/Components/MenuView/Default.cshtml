@@ -1,0 +1,71 @@
+﻿@model IList<Menu>
+@using KhoaHocNauAn.Utilities;
+
+<!-- Navbar Start -->
+<nav class=" navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0 ">
+    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <h2 style="color:#568203" class="m-0 text"><img src="/img/Logo.png" /></h2>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div style="margin-right:80px" class="navbar-nav ms-auto p-4 p-lg-0">
+             @foreach (var menu in Model.Where(m => m.Levels == 1).OrderBy(n => n.MenuOrder))
+            {
+                var Pid = menu.MenuID;
+                var Smenu = Model.Where(p => p.ParentID == Pid).OrderBy(p => p.MenuOrder).ToList();
+
+                @if (Smenu.Count == 0)
+                {
+                    <a href="@menu.ControllerName" class="nav-item nav-link ">@menu.MenuName</a>
+                }
+                else
+                {
+                    <div class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">@menu.MenuName</a>
+                        <div class="dropdown-menu m-0">
+                            @foreach (var smn in Smenu)
+                            {
+                                <a href="@smn.ControllerName" class=" dropdown-item @(ViewBag.CurrentUrl == @smn.Link ? "active" : "")">@smn.MenuName</a>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+            <div class="mt-4">
+                <a style="color:black;" href="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+
+            <div style="margin-top:16px;" class="dropdown ms-0 ms-lg-0">
+                <a style="margin-left:30px;" class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img style="width:30px;height:30px;" class="avatar-img rounded-circle" src="/img/customer.jpg" alt="avatar">
+                </a>
+                <ul style="margin-top:-5px; margin-left:-100px;" class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-1" aria-labelledby="profileDropdown">
+                    <li class="px-3">
+                        <div class="d-flex align-items-center">
+                            <!-- Avatar -->
+                            <div class="avatar me-3">
+                                <img style="width:30px;height:30px;" class="avatar-img rounded-circle shadow" src="/img/customer.jpg" alt="avatar">
+                            </div>
+                            <div style="margin-top:5px;">
+                                <a class="h6" >@Functions._CustomerName</a>
+                                <p class="small m-0">@Functions._Email</p>
+                            </div>
+                        </div>
+                        <hr>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Thông tin cá nhân</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Cài đặt</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Trợ giúp</a></li>
+                    <li><a class="dropdown-item bg-danger-soft-hover" href="#"><i class="bi bi-power fa-fw me-2"></i>Đăng xuất</a></li>
+                    <li> <hr class="dropdown-divider"></li>
+                </ul>
+            </div>
+
+        </div>
+     
+    </div>
+</nav>
+<!-- Navbar End -->

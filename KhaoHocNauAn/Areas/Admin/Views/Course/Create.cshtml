@@ -1,0 +1,110 @@
+﻿@model KhoaHocNauAn.Models.CookingCourse
+@using KhoaHocNauAn.Utilities
+
+<main id="main" class="main">
+	<div style="background-color:white;" class="container shadow p-3">
+		<div class="row pb-2">
+			<h2>Thêm mới khoá học</h2>
+		</div>
+
+		<form method ="post" asp-action="Create">
+			<div asp-validation-summary="All"></div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label asp-for="CourseName">Tên khoá học</label>
+					<input type="text" class="form-control mb-3" asp-for="CourseName">
+					
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label asp-for="Description ">Mô tả</label>
+					<input type="text" class="form-control mb-3" asp-for="Description ">
+					
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<label class="control-label">Ảnh khoá học</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<button class="btn btn-success" type="button" onclick="openDialog()">Chọn ảnh</button>
+					</div>
+					<input type="text" class="form-control" asp-for="Images" id="file_input" aria-describedby="button-addon2" />
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label asp-for="Price ">Giá</label>
+					<input type="text" class="form-control mb-3" asp-for="Price ">
+				</div>
+			</div>
+			<div style="display:none;" class="form-row">
+				<div class="form-group col-md-6">
+					<label asp-for="IsActive"></label>
+					<input type="text" class="form-control mb-3" asp-for="IsActive" value="True">
+
+				</div>
+			</div>
+			<div style="display:none;" class="form-row">
+				<div class="form-group col-md-6">
+					<label asp-for="Status"></label>
+					<input type="text" class="form-control mb-3" asp-for="Status" value="1">
+					
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label asp-for="StudentCount">Số học viên</label>
+					<input type="text" class="form-control mb-3" asp-for="StudentCount">
+
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label asp-for="LearnTime">Thời gian học</label>
+					<input type="text" class="form-control mb-3" asp-for="LearnTime">
+
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6 mb-2">
+					<label asp-for="Levels">Trình độ</label>
+					<select asp-for="Levels" class="form-select" id="Levels">
+						<option value="Cơ bản">Cơ bản</option>
+						<option value="Nâng cao">Nâng cao</option>
+					</select>
+				</div>
+			</div>
+			<div style="display:none;"  class="form-row">
+				<div class="form-group col-md-6">
+					<label asp-for="MenuID">MenuID</label>
+					<input type="text" class="form-control mb-3" asp-for="MenuID" value="3">
+
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label asp-for="CategoryID ">ID Danh mục</label>
+					<input type="text" class="form-control mb-3" asp-for="CategoryID ">
+
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label asp-for="TeacherID ">ID Giáo viên</label>
+					<input type="text" class="form-control mb-3" asp-for="TeacherID ">
+
+				</div>
+			</div>
+			<div class="form-group ">
+					<input asp-for="Deadline" class="form-control" value="@Functions.Date()" />
+				</div>
+			<button type="submit" class="btn btn-lg btn-primary p-2"><i class="bi bi-file-plus-fill"></i>Xác nhận</button>
+			<a asp-controller="Course" asp-action="Index" class="btn btn-lg btn-warning p-2">Quay lại</a>
+		</form>
+	</div>
+	@{
+		var summerNote = new KhoaHocNauAn.Areas.Admin.Models.SummerNote("#Description");
+		<partial name="_SummerNote" model="summerNote" />
+	}
+</main>

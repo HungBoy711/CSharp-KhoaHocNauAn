@@ -1,0 +1,61 @@
+﻿@using KhoaHocNauAn.Models;
+@model IList<Menu>
+
+<main id="main" class="main">
+	<div class="pagetitle">
+		<h2>Danh sách Menu</h2>
+	</div>
+	<p>
+		<a type="button" class="btn btn-success" asp-area="Admin" asp-controller="Menu" asp-action="Create">
+			<i class="bi bi-file-earmark-text me-1"></i>Thêm menu
+		</a>
+	</p>
+	<section class="section dashboard">
+		<div class="row">
+			<div class="col-12">
+				<div class="card recent-sales overflow-auto">
+					<div class="card-body mt-4">
+						<table class="table table-borderless datatable">
+							<thead>
+								<tr>
+									<th class="col-1 text-center">#</th>
+									
+									<td class="col-2 text-center">Tên menu</td>
+									<td class="col-2 text-center">Ẩn/Hiện</td>
+									<td class="col-1 text-center">Cấp</td>
+									<th class="col-2 text-center">Thứ tự</th>
+								</tr>
+							</thead>
+							<tbody>
+								@{
+									int i = 1;
+								}
+								@foreach (var item in Model)
+								{
+									<tr id="tr_@item.MenuID">
+										<td class="text-center">@(i++)</td>
+										
+										<td class="text-center">@item.MenuName</td>
+										<td class="text-center">@item.IsActive </td>
+										<td class="text-center">@item.Levels</td>
+										<td class="text-center">@item.MenuOrder</td>
+										<td class="text-center d-flex">
+											<a style="margin-right:10px;" asp-area="Admin" asp-controller="Menu" asp-action="Edit"
+											   asp-route-id="@item.MenuID" class=" btn btn-primary btn-sm"
+											   ><i class="bi bi-pencil"></i></a>
+											<a asp-area="Admin" asp-controller="Menu" asp-action="Delete"
+											   asp-route-id="@item.MenuID" class="btn btn-danger btn-sm"
+											   ><i class="bi bi-trash"></i></a>
+										</td>
+									</tr>
+								}
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
+
